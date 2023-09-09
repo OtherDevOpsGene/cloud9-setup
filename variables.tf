@@ -22,6 +22,6 @@ variable "instance_type" {
 }
 
 variable "password" {
-  description = "The initial passwords for the accounst. They must be changed on first login."
+  description = "The initial passwords for the accounts. They must be changed on first login."
   type        = string
 }
