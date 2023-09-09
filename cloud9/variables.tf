@@ -1,13 +1,3 @@
-variable "owner_email" {
-  description = "The email address of the person responsible for the resources."
-  type        = string
-}
-
-variable "class_name" {
-  description = "The name of the class this was created for."
-  type        = string
-}
-
 variable "aws_account" {
   description = "The account ID for this account."
   type        = string
@@ -17,7 +7,6 @@ variable "aws_account" {
 variable "aws_region" {
   description = "The AWS region."
   type        = string
-  default     = "us-east-2"
 }
 
 variable "instructor" {

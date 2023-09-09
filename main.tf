@@ -8,9 +8,6 @@ module "account" {
   for_each = { for acct in local.students : acct.username => acct }
   username = each.value.username
   password = var.password
-
-  owner_email = var.owner_email
-  class_name  = var.class_name
 }
 
 module "cloud9" {
@@ -20,9 +17,8 @@ module "cloud9" {
   username = each.value.username
 
   aws_account   = var.aws_account
+  aws_region    = var.aws_region
   instance_type = var.instance_type
-  owner_email   = var.owner_email
-  class_name    = var.class_name
 }
 
 output "cloud9" {

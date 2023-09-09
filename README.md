@@ -7,12 +7,14 @@ Builds Cloud9 environments for a list of users.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.6 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.15.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.7 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.16.1 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.16.1 |
 
 ## Modules
 
@@ -24,13 +26,16 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [aws_iam_role.Student](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_account"></a> [aws\_account](#input\_aws\_account) | The account ID for this account. | `string` | n/a | yes |
+| <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | The AWS region. | `string` | `"us-east-2"` | no |
 | <a name="input_class_name"></a> [class\_name](#input\_class\_name) | The name of the class this was created for. | `string` | `"Terraform Fundamentals"` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | The instance\_type for the Cloud9 instances. | `string` | `"t3.small"` | no |
 | <a name="input_owner_email"></a> [owner\_email](#input\_owner\_email) | The email address of the person responsible for the resources. | `string` | n/a | yes |

@@ -8,11 +8,6 @@ resource "aws_cloud9_environment_ec2" "class" {
   name            = var.username
   owner_arn       = local.user_arn
   connection_type = "CONNECT_SSM"
-
-  tags = {
-    Class = var.class_name
-    Owner = var.owner_email
-  }
 }
 
 resource "aws_cloud9_environment_membership" "instructor" {
@@ -35,8 +30,6 @@ resource "aws_s3_bucket" "cloud9" {
   bucket = local.student_host
 
   tags = {
-    Class    = var.class_name
-    Owner    = var.owner_email
     Student  = var.username
     Cloud9ID = aws_cloud9_environment_ec2.class.id
   }
