@@ -2,6 +2,10 @@ locals {
   students = csvdecode(file("${path.module}/students.csv"))
 }
 
+module "policies" {
+  source = "./policies"
+}
+
 module "account" {
   source = "./account"
 

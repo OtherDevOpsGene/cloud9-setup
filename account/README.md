@@ -22,7 +22,6 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_iam_user.account](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user) | resource |
-| [aws_iam_user_group_membership.student](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_group_membership) | resource |
 
 ## Inputs
 

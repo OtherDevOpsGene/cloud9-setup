@@ -12,9 +12,7 @@ Builds Cloud9 environments for a list of users.
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.16.1 |
+No providers.
 
 ## Modules
 
@@ -22,13 +20,12 @@ Builds Cloud9 environments for a list of users.
 |------|--------|---------|
 | <a name="module_account"></a> [account](#module\_account) | ./account | n/a |
 | <a name="module_cloud9"></a> [cloud9](#module\_cloud9) | ./cloud9 | n/a |
+| <a name="module_policies"></a> [policies](#module\_policies) | ./policies | n/a |
 | <a name="module_tfstate-backend"></a> [tfstate-backend](#module\_tfstate-backend) | cloudposse/tfstate-backend/aws | 1.1.1 |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_iam_role.Student](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+No resources.
 
 ## Inputs
 

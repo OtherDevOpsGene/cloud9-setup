@@ -5,6 +5,8 @@ module "tfstate-backend" {
   namespace  = "otherdevopsgene"
   name       = "cloud9-class"
   attributes = ["gg", "tf"]
+
+  force_destroy = false
 }
 
 output "terraform_backend_config" {
