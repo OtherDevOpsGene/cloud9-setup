@@ -12,6 +12,7 @@ resource "aws_iam_policy" "ec2_exercises" {
         "Action" : [
           "ec2:CreateTags",
           "ec2:DeleteTags",
+          "ec2:DescribeImages",
           "ec2:DescribeInstanceAttribute",
           "ec2:DescribeInstanceCreditSpecifications",
           "ec2:DescribeInstanceTypes",
@@ -34,8 +35,8 @@ resource "aws_iam_policy" "ec2_exercises" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "ec2_exercises" {
-  role       = aws_iam_role.student.name
+resource "aws_iam_group_policy_attachment" "ec2_exercises" {
+  group      = aws_iam_group.students.name
   policy_arn = aws_iam_policy.ec2_exercises.arn
 }
 
@@ -146,7 +147,7 @@ resource "aws_iam_policy" "s3_state_exercise" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "s3_state_exercise" {
-  role       = aws_iam_role.student.name
+resource "aws_iam_group_policy_attachment" "s3_state_exercise" {
+  group      = aws_iam_group.students.name
   policy_arn = aws_iam_policy.s3_state_exercise.arn
 }

@@ -4,7 +4,7 @@ resource "aws_iam_user" "account" {
   force_destroy = true
 
   # provisioner "local-exec" {
-  #   command = "aws iam update-login-profile --username ${var.username} --password ${var.password} --password-reset-required"
+  #   command = "aws iam update-login-profile --user-name '/student/${var.username}' --password '${var.password}' --password-reset-required"
   #   when    = create
   # }
 }

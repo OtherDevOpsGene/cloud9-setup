@@ -26,7 +26,8 @@ module "cloud9" {
 }
 
 output "cloud9" {
-  value = values(module.cloud9)[*].cloud9
+  value     = values(module.cloud9)[*].cloud9
+  sensitive = true
 }
 
 output "route53_cname" {
