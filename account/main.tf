@@ -22,15 +22,6 @@ resource "aws_iam_user_login_profile" "student" {
   }
 }
 
-output "acct_password" {
+output "password" {
   value = aws_iam_user_login_profile.student.encrypted_password
 }
-
-# resource "null_resource" "reset_password" {
-#   depends_on = [ aws_iam_user_login_profile.student ]
-
-#   provisioner "local-exec" {
-#     command = "aws iam update-login-profile --user-name '${var.username}' --password '${var.password}' --password-reset-required"
-#     when    = create
-#   }
-# }

@@ -26,8 +26,3 @@ variable "instance_type" {
   type        = string
   default     = "t3.small"
 }
-
-variable "password" {
-  description = "The initial passwords for the accounts. They must be changed on first login."
-  type        = string
-}
