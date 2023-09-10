@@ -7,3 +7,8 @@ variable "password" {
   description = "The initial password for this account. It must be changed on first login."
   type        = string
 }
+
+variable "pub_key" {
+  description = "Public key to encrypt the generated password with."
+  type        = string
+}

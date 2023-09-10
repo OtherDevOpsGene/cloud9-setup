@@ -1,7 +1,7 @@
 variable "aws_account" {
   description = "The account ID for this account."
   type        = string
-  sensitive   = true
+  # sensitive   = true
 }
 
 variable "aws_region" {
