@@ -29,11 +29,22 @@ module "cloud9" {
   instance_type = var.instance_type
 }
 
-output "cloud9_urls" {
-  value = values(module.cloud9)[*].cloud9_url
+output "class_name" {
+  description = "Class name"
+  value       = var.class_name
 }
 
-# decrypt with for p in $(terraform output --json acct_password | jq -r .[]); do echo ${p} | base64 -d | gpg -d && echo; done
-output "acct_password" {
-  value = values(module.account)[*].password
+output "cloud9_urls" {
+  description = "URLs for each of the Cloud9 environments, by username"
+  value = {
+    for username in keys(module.cloud9) : username => module.cloud9[username].cloud9_url
+  }
+}
+
+# decrypt with for p in $(terraform output --json passwords | jq -r .[]); do echo ${p} | base64 -d | gpg -d && echo; done
+output "passwords" {
+  description = "Encrypted passwords for each of the accounts, by username"
+  value = {
+    for username in keys(module.account) : username => module.account[username].password
+  }
 }

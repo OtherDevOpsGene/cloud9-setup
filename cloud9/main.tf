@@ -4,6 +4,7 @@ locals {
 }
 
 resource "aws_cloud9_environment_ec2" "student" {
+  description     = "${var.username}'s workspace"
   instance_type   = var.instance_type
   name            = var.username
   owner_arn       = local.user_arn

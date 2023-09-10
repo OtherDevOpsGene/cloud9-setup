@@ -13,6 +13,8 @@ resource "aws_iam_user_login_profile" "student" {
   user    = aws_iam_user.account.name
   pgp_key = var.pub_key
 
+  password_reset_required = true
+
   lifecycle {
     ignore_changes = [
       password_length,
