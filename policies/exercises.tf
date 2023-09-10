@@ -113,6 +113,7 @@ resource "aws_iam_policy" "s3_state_exercise" {
         "Action" : [
           "s3:CreateBucket",
           "s3:DeleteBucket",
+          "s3:DeleteBucketPolicy",
           "s3:GetAccelerateConfiguration",
           "s3:GetBucketAcl",
           "s3:GetBucketCORS",
