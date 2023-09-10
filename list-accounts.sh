@@ -54,6 +54,10 @@ cat <<HEAD
   <body>
     <h1>$class</h1>
 
+    <p>Log in at <a href="https://732829343588.signin.aws.amazon.com/console">https://732829343588.signin.aws.amazon.com/console</a>.</p>
+
+    <p>Then, go to your Cloud9 environment using the URL:</p>
+    
     <table>
       <thead>
         <tr>
