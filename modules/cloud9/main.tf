@@ -9,6 +9,10 @@ resource "aws_cloud9_environment_ec2" "student" {
   name            = var.username
   owner_arn       = local.user_arn
   connection_type = "CONNECT_SSM"
+
+  tags = {
+    Student = var.username
+  }
 }
 
 resource "aws_cloud9_environment_membership" "instructor" {
