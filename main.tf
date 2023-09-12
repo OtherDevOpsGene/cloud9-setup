@@ -7,11 +7,11 @@ locals {
 }
 
 module "policies" {
-  source = "./policies"
+  source = "./modules/policies"
 }
 
 module "account" {
-  source = "./account"
+  source = "./modules/account"
 
   for_each = { for acct in local.students : acct.username => acct }
   username = each.value.username
@@ -19,7 +19,7 @@ module "account" {
 }
 
 module "cloud9" {
-  source = "./cloud9"
+  source = "./modules/cloud9"
 
   for_each = { for acct in local.students : acct.username => acct }
   username = each.value.username
