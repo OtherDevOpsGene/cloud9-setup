@@ -22,6 +22,7 @@ resource "aws_iam_policy" "ec2_exercises" {
           "ec2:DescribeTags",
           "ec2:DescribeVolumes",
           "ec2:ModifyInstanceAttribute",
+          "ec2:ModifyInstanceMetadataOptions",
           "ec2:MonitorInstances",
           "ec2:RunInstances",
           "ec2:StartInstances",
