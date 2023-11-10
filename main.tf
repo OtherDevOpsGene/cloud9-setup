@@ -31,7 +31,7 @@ module "cloud9" {
 
 resource "aws_s3_bucket" "for_import" {
   for_each = { for acct in local.students : acct.username => acct }
-  bucket = "bucket-${each.value.username}"
+  bucket   = "bucket-${each.value.username}"
 
   tags = {
     Lesson = "import"

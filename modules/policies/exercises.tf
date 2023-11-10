@@ -10,6 +10,7 @@ resource "aws_iam_policy" "ec2_exercises" {
         "Sid" : "VisualEditor0",
         "Effect" : "Allow",
         "Action" : [
+          "ec2:CreateKeyPair",
           "ec2:CreateTags",
           "ec2:DeleteTags",
           "ec2:DescribeAvailabilityZones",
@@ -21,6 +22,9 @@ resource "aws_iam_policy" "ec2_exercises" {
           "ec2:DescribeInstances",
           "ec2:DescribeTags",
           "ec2:DescribeVolumes",
+          "ec2:DescribeKeyPairs",
+          "ec2:DeleteKeyPair",
+          "ec2:ImportKeyPair",
           "ec2:ModifyInstanceAttribute",
           "ec2:ModifyInstanceMetadataOptions",
           "ec2:MonitorInstances",
@@ -28,7 +32,19 @@ resource "aws_iam_policy" "ec2_exercises" {
           "ec2:StartInstances",
           "ec2:StopInstances",
           "ec2:TerminateInstances",
-          "ec2:UnmonitorInstances"
+          "ec2:UnmonitorInstances",
+          "ec2:AuthorizeSecurityGroupEgress",
+          "ec2:AuthorizeSecurityGroupIngress",
+          "ec2:CreateSecurityGroup",
+          "ec2:DeleteSecurityGroup",
+          "ec2:DescribeSecurityGroupRules",
+          "ec2:DescribeSecurityGroups",
+          "ec2:ModifySecurityGroupRules",
+          "ec2:RevokeSecurityGroupEgress",
+          "ec2:RevokeSecurityGroupIngress",
+          "ec2:UpdateSecurityGroupRuleDescriptionsEgress",
+          "ec2:UpdateSecurityGroupRuleDescriptionsIngress",
+          "ec2:DescribeNetworkInterfaces"
         ],
         "Resource" : [
           "*"

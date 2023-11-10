@@ -2,11 +2,11 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.16.1"
+      version = "~> 5.25.0"
     }
   }
 
-  required_version = ">= 1.5.7"
+  required_version = ">= 1.6.3"
 
   backend "s3" {
     region         = "us-east-2"
@@ -14,7 +14,6 @@ terraform {
     key            = "terraform.tfstate"
     dynamodb_table = "otherdevopsgene-cloud9-class-gg-tf-lock"
     profile        = ""
-    role_arn       = ""
     encrypt        = "true"
   }
 }
