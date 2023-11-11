@@ -9,6 +9,12 @@ variable "class_name" {
   default     = "Terraform Fundamentals"
 }
 
+variable "class_initials" {
+  description = "The initials of the class this was created for, so the buckets are named uniquely."
+  type        = string
+  default     = "gg-tf"
+}
+
 variable "aws_account" {
   description = "The account ID for this account."
   type        = string
