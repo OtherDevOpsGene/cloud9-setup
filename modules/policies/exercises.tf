@@ -49,6 +49,16 @@ resource "aws_iam_policy" "ec2_exercises" {
         "Resource" : [
           "*"
         ]
+      },
+      {
+        "Sid" : "VisualEditor1",
+        "Effect" : "Allow",
+        "Action" : [
+          "ssm:GetParameters"
+        ],
+        "Resource" : [
+          "arn:aws:ssm:us-east-2::parameter/aws/service/canonical/meta/publisher-id"
+        ]
       }
     ]
   })
