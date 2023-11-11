@@ -2,6 +2,7 @@
 
 # Usage:
 #   bash list-accounts.sh > index.html 2>/dev/null
+#   aws s3 cp index.html s3://cloud9.otherdevopsgene.dev/index.html --acl public-read
 
 declare -A urls passwords
 
