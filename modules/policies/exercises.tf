@@ -175,6 +175,7 @@ resource "aws_iam_policy" "s3_state_exercise" {
           "s3:PutBucketVersioning",
           "s3:PutEncryptionConfiguration",
           "s3:PutIntelligentTieringConfiguration",
+          "s3:PutObject",
           "s3:PutReplicationConfiguration"
         ],
         "Resource" : [
