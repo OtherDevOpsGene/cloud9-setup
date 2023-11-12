@@ -63,8 +63,8 @@ cat <<HEAD
       <thead>
         <tr>
           <th>Username</th>
-          <th>Cloud9 URL</th>
           <th>Password</th>
+          <th>Cloud9 URL</th>
         </tr>
       </thead>
       <tbody>
@@ -80,12 +80,15 @@ do
   # base64 decode and then GPG decrypt the password
   decrypted=$(echo "${passwords[$k]}" | base64 -d | gpg -d)
   encoded=$(echo "$decrypted" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g; s/"/\&quot;/g; s/'"'"'/\&#39;/g')
-  echo "<tr class=\"$row\"><td>$k</td><td><a href=\"${urls[$k]}\">${urls[$k]}</a></td><td class=\"password\">$encoded</td></tr>"
+  echo "<tr class=\"$row\"><td>$k</td><td class=\"password\">$encoded</td><td><a href=\"${urls[$k]}\">${urls[$k]}</a></td></tr>"
 done
 
 cat <<-FOOT
       </tbody>
     </table>
+
+    <p>If you are asked for the Account ID, use <strong>732829343588</strong>.
+    
   </body>
 </html>
 FOOT
