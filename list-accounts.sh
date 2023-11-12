@@ -57,7 +57,7 @@ cat <<HEAD
 
     <p>Log in at <a href="https://732829343588.signin.aws.amazon.com/console">https://732829343588.signin.aws.amazon.com/console</a>.</p>
 
-    <p>Then, go to your Cloud9 environment using the URL:</p>
+    <p>Or, go directly to your Cloud9 environment using the URL:</p>
     
     <table>
       <thead>
@@ -88,7 +88,7 @@ cat <<-FOOT
     </table>
 
     <p>If you are asked for the Account ID, use <strong>732829343588</strong>.
-    
+
   </body>
 </html>
 FOOT
