@@ -1,10 +1,10 @@
 module "tfstate-backend" {
   source  = "cloudposse/tfstate-backend/aws"
-  version = "1.1.1"
+  version = "1.4.1"
 
   namespace  = "otherdevopsgene"
   name       = "cloud9-class"
-  attributes = ["gg", "tf"]
+  attributes = ["gg", "do"]
 
   force_destroy = false
 }

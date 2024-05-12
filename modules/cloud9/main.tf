@@ -8,7 +8,7 @@ resource "aws_cloud9_environment_ec2" "student" {
   instance_type   = var.instance_type
   name            = var.username
   owner_arn       = local.user_arn
-  image_id        = "amazonlinux-2-x86_64"
+  image_id        = "amazonlinux-2023-x86_64"
   connection_type = "CONNECT_SSM"
 
   tags = {
