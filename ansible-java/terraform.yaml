@@ -1,4 +1,4 @@
-- name: Install Java and Maven
+- name: Install Terraform and Ansible
   hosts: all
   vars:
     ansible_connection: aws_ssm
@@ -7,9 +7,5 @@
   become: yes
 
   roles:
-    - role: geerlingguy.java
-      java_packages:
-        - java-21-amazon-corretto
-
-    - role: gantsign.maven
-    
+    - role: andrewrothstein.terraform
+    - role: geerlingguy.ansible
