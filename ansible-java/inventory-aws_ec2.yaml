@@ -1,0 +1,11 @@
+---
+plugin: amazon.aws.aws_ec2
+
+regions:
+  - us-east-2
+
+hostnames:
+  - instance-id
+
+filters:
+  tag:Name: aws-cloud9-*

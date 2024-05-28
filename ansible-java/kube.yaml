@@ -1,0 +1,27 @@
+- name: Install kubectl and kubeconfig
+  hosts: all
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_bucket_name: otherdevopsgene-ansible-ssm
+    ansible_aws_ssm_region: us-east-2
+  become: yes
+
+  roles:
+    - role: andrewrothstein.kubectl
+
+  tasks:
+  - name: kube dir
+    ansible.builtin.file:
+      path: /home/ec2-user/.kube
+      state: directory
+      owner: ec2-user
+      group: ec2-user
+      mode: '0755'
+  
+  - name: kubeconfig
+    ansible.builtin.copy:
+      src: kubeconfig
+      dest: /home/ec2-user/.kube/config
+      owner: ec2-user
+      group: ec2-user
+      mode: '0644'
