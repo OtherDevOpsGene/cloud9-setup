@@ -10,12 +10,12 @@ terraform {
 
   backend "s3" {
     region  = "us-east-2"
-    bucket  = "otherdevopsgene-cloud9-class-gg-tf"
+    bucket  = "otherdevopsgene-cloud9-class"
     key     = "terraform.tfstate"
     profile = ""
     encrypt = "true"
 
-    dynamodb_table = "otherdevopsgene-cloud9-class-gg-tf-lock"
+    dynamodb_table = "otherdevopsgene-cloud9-class-lock"
   }
 }
 
