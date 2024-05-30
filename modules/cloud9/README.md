@@ -5,13 +5,16 @@ A Terraform module to set up a Cloud9 environment.
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8.4 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.51.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | n/a |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.51.1 |
 
 ## Modules
 
@@ -21,12 +24,8 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_cloud9_environment_ec2.class](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloud9_environment_ec2) | resource |
+| [aws_cloud9_environment_ec2.student](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloud9_environment_ec2) | resource |
 | [aws_cloud9_environment_membership.instructor](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloud9_environment_membership) | resource |
-| [aws_route53_record.cloud9_alias](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
-| [aws_s3_bucket.cloud9](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
-| [aws_s3_bucket_website_configuration.redirect_cloud9](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_website_configuration) | resource |
-| [aws_route53_zone.otherdevopsgene_dev](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
 
 ## Inputs
 
@@ -42,8 +41,5 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_bucket"></a> [bucket](#output\_bucket) | n/a |
-| <a name="output_cloud9"></a> [cloud9](#output\_cloud9) | n/a |
-| <a name="output_redirect"></a> [redirect](#output\_redirect) | n/a |
-| <a name="output_route53_cname"></a> [route53\_cname](#output\_route53\_cname) | n/a |
+| <a name="output_cloud9_url"></a> [cloud9\_url](#output\_cloud9\_url) | n/a |
 <!-- END_TF_DOCS -->
