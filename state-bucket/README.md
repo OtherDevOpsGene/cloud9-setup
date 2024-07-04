@@ -8,8 +8,8 @@ Should only need to be run once.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.51.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.57.0 |
 
 ## Providers
 

@@ -2,33 +2,49 @@
 
 Builds Cloud9 environments for a list of users.
 
+## Setup
+
+Edit `students.cv` to include a header line and a single column of usernames.
+
+```shell
+terraform init  # or terraform init --upgrade
+terraform apply
+bash resize.sh
+bash list-accounts.sh > index.html 2>/dev/null
+aws s3 cp index.html s3://cloud9.otherdevopsgene.dev/index.html --acl public-read
+```
+
+## Update docs
+
+```shell
+for d in modules/* state-bucket .; do
+   pushd ${d} && terraform-docs markdown table --output-file README.md --output-mode inject .
+  popd
+done
+```
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.8.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.51.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.1 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.57.0 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.49.0 |
+No providers.
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_account"></a> [account](#module\_account) | ./modules/account | n/a |
-| <a name="module_cloud9"></a> [cloud9](#module\_cloud9) | ./modules/cloud9 | n/a |
 | <a name="module_policies"></a> [policies](#module\_policies) | ./modules/policies | n/a |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [aws_s3_bucket.for_import](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
+No resources.
 
 ## Inputs
 
