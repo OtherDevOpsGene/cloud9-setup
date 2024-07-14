@@ -21,7 +21,7 @@ Test the dynamic inventory with
 ansible-inventory -i inventory-aws_ec2.yaml --graph
 ```
 
-Run with 
+Run with
 
 ```shell
 ansible-playbook -i inventory-aws_ec2.yaml java.yaml
@@ -29,4 +29,5 @@ ansible-playbook -i inventory-aws_ec2.yaml terraform.yaml
 ansible-playbook -i inventory-aws_ec2.yaml put-files.yaml
 ansible-playbook -i inventory-aws_ec2.yaml docker.yaml
 ansible-playbook -i inventory-aws_ec2.yaml kube.yaml
+ansible-playbook -i inventory-aws_ec2.yaml git.yaml
 ```
