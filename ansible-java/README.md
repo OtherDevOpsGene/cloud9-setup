@@ -28,4 +28,5 @@ ansible-playbook -i inventory-aws_ec2.yaml java.yaml
 ansible-playbook -i inventory-aws_ec2.yaml terraform.yaml
 ansible-playbook -i inventory-aws_ec2.yaml put-files.yaml
 ansible-playbook -i inventory-aws_ec2.yaml docker.yaml
+ansible-playbook -i inventory-aws_ec2.yaml kube.yaml
 ```

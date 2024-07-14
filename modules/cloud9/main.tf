@@ -1,5 +1,5 @@
 locals {
-  user_arn       = "arn:aws:iam::${var.aws_account}:user/student/${var.username}"
+  user_arn       = "arn:aws:iam::${var.aws_account}:user/${var.username}"
   instructor_arn = "arn:aws:iam::${var.aws_account}:user/${var.instructor}"
 }
 

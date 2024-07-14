@@ -1,6 +1,6 @@
 resource "aws_iam_user" "account" {
   name          = var.username
-  path          = "/student/"
+  path          = "/"
   force_destroy = true
 }
 

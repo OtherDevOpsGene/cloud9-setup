@@ -29,14 +29,14 @@ module "cloud9" {
   instance_type = var.instance_type
 }
 
-resource "aws_s3_bucket" "for_import" {
-  for_each = { for acct in local.students : acct.username => acct }
-  bucket   = "${var.class_initials}-${each.value.username}"
+# resource "aws_s3_bucket" "for_import" {
+#   for_each = { for acct in local.students : acct.username => acct }
+#   bucket   = "${var.class_initials}-${each.value.username}"
 
-  tags = {
-    Lesson = "import"
-  }
-}
+#   tags = {
+#     Lesson = "import"
+#   }
+# }
 
 output "class_name" {
   description = "Class name"

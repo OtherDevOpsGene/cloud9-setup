@@ -1,0 +1,31 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: itdstudentrole
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets", "deployments", "replicasets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["apps"]
+  resources: ["statefulsets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: itdstudentsbinding
+  namespace: default
+subjects:
+# You can specify more than one "subject"
+- kind: Group
+  name: itdstudents
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  # "roleRef" specifies the binding to a Role / ClusterRole
+  kind: Role # this must be Role or ClusterRole
+  name: itdstudentrole # this must match the name of the Role or ClusterRole you wish to bind to
+  apiGroup: rbac.authorization.k8s.io

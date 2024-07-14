@@ -1,4 +1,4 @@
-- name: Install Docker Compose
+- name: Install Docker tools
   hosts: all
   vars:
     ansible_connection: aws_ssm
@@ -31,4 +31,59 @@
       owner: ec2-user
       group: ec2-user
       mode: '0755'
-    
+
+  - name: Install Checkov
+    ansible.builtin.pip:
+      name: checkov
+    become: yes
+    become_user: ec2-user
+
+  - name: Install Grype
+    ansible.builtin.unarchive:
+      src: https://github.com/anchore/grype/releases/download/v0.79.2/grype_0.79.2_linux_amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [grype]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Trivy
+    ansible.builtin.unarchive:
+      src: https://github.com/aquasecurity/trivy/releases/download/v0.53.0/trivy_0.53.0_Linux-64bit.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [trivy]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Dive
+    ansible.builtin.unarchive:
+      src: https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [dive]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Crane
+    ansible.builtin.unarchive:
+      src: https://github.com/google/go-containerregistry/releases/download/v0.19.2/go-containerregistry_Linux_x86_64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [crane, gcrane, krane]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install ctop
+    ansible.builtin.get_url:
+      url: https://github.com/bcicen/ctop/releases/download/v0.7.7/ctop-0.7.7-linux-amd64
+      dest: /usr/local/bin/ctop
+      checksum: sha256:https://github.com/bcicen/ctop/releases/download/v0.7.7/sha256sums.txt
+      owner: root
+      group: root
+      mode: '0755'
+  

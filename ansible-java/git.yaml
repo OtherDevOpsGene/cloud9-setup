@@ -1,0 +1,27 @@
+- name: Clone git repos
+  hosts: all
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_bucket_name: otherdevopsgene-ansible-ssm
+    ansible_aws_ssm_region: us-east-2
+  become: yes
+  become_user: ec2-user
+
+  tasks:
+  - name: git clone intro-to-docker
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/intro-to-docker.git'
+      dest: /home/ec2-user/environment/intro-to-docker
+      version: main
+
+  - name: git clone favorites
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/favorites.git'
+      dest: /home/ec2-user/environment/favorites
+      version: main
+
+  - name: git clone solarsystem
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/solarsystem.git'
+      dest: /home/ec2-user/environment/solarsystem
+      version: main

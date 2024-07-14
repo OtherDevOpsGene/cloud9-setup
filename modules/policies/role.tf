@@ -1,5 +1,5 @@
 locals {
-  path = "/student/"
+  path = "/"
 }
 
 resource "aws_iam_group" "students" {
@@ -19,7 +19,7 @@ resource "aws_iam_group_policy_attachment" "cloud9" {
 resource "aws_iam_policy" "change_student_own_password" {
   name_prefix = "student-password"
   path        = local.path
-  description = "Policy for /student/ to change their own password"
+  description = "Policy for students to change their own password"
 
   policy = jsonencode({
     "Version" : "2012-10-17",
@@ -30,7 +30,7 @@ resource "aws_iam_policy" "change_student_own_password" {
           "iam:ChangePassword"
         ],
         "Resource" : [
-          "arn:aws:iam::*:user/student/$${aws:username}"
+          "arn:aws:iam::*:user/$${aws:username}"
         ]
       },
       {
