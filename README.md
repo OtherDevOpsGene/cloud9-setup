@@ -4,7 +4,7 @@ Builds Cloud9 environments for a list of users.
 
 ## Setup
 
-Edit `students.cv` to include a header line and a single column of usernames.
+Edit `students.csv` to include a header line and a single column of usernames.
 
 ```shell
 terraform init  # or terraform init --upgrade
