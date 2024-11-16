@@ -30,4 +30,5 @@ ansible-playbook -i inventory-aws_ec2.yaml put-files.yaml
 ansible-playbook -i inventory-aws_ec2.yaml docker.yaml
 ansible-playbook -i inventory-aws_ec2.yaml kube.yaml
 ansible-playbook -i inventory-aws_ec2.yaml git.yaml
+ansible-playbook -i inventory-aws_ec2.yaml k3s.yaml
 ```
