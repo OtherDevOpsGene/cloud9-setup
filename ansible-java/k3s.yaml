@@ -19,3 +19,8 @@
     ansible.builtin.command: 
       cmd: /tmp/k3s-install.sh --write-kubeconfig-mode "0644"
       creates: /etc/rancher/k3s/k3s.yaml
+
+  - name: Install Checkov
+    ansible.builtin.pip:
+      name: checkov
+    become_user: ec2-user
