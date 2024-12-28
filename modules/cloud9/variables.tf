@@ -24,3 +24,13 @@ variable "username" {
   description = "The username for this account."
   type        = string
 }
+
+variable "domain" {
+  description = "The domain to use for DNS records."
+  type        = string
+}
+
+variable "subdomain" {
+  description = "The subdomain to use for DNS records."
+  type        = string
+}

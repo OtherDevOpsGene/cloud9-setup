@@ -1,5 +1,5 @@
 data "aws_security_group" "cloud9" {
-    filter {
+  filter {
     name = "tag:aws:cloud9:environment"
     values = [
       aws_cloud9_environment_ec2.student.id

@@ -1,9 +1,15 @@
 locals {
   # first line is a header, one username per line
-  students = csvdecode(file("${path.module}/students.csv"))
+  #students = csvdecode(file("${path.module}/students.csv"))
+
+  table_name = "usernames"
 
   # create with gpg --export OtherDevOpsGene | base64 > OtherDevOpsGene-pub.b64
   pub_key = file("${path.module}/OtherDevOpsGene-pub.b64")
+}
+
+data "external" "usernames" {
+  program = ["python3", "${path.module}/get_usernames.py"]
 }
 
 module "policies" {
@@ -13,20 +19,23 @@ module "policies" {
 module "account" {
   source = "./modules/account"
 
-  for_each = { for acct in local.students : acct.username => acct }
-  username = each.value.username
+  for_each = toset(jsondecode(data.external.usernames.result.usernames))
+  username = each.value
   pub_key  = local.pub_key
 }
 
 module "cloud9" {
   source = "./modules/cloud9"
 
-  for_each = { for acct in local.students : acct.username => acct }
-  username = each.value.username
+  for_each = toset(jsondecode(data.external.usernames.result.usernames))
+  username = each.value
 
   aws_account   = var.aws_account
   aws_region    = var.aws_region
   instance_type = var.instance_type
+
+  domain    = var.domain
+  subdomain = var.subdomain
 }
 
 # resource "aws_s3_bucket" "for_import" {
@@ -57,3 +66,9 @@ output "passwords" {
     for username in keys(module.account) : username => module.account[username].password
   }
 }
+
+# resource "terraform_data" "upload" {
+#   triggers = {
+#     cluster_instance_ids = join(",", aws_instance.cluster[*].id)
+#   }
+# } 
