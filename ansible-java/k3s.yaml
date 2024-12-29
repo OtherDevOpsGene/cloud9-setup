@@ -24,3 +24,8 @@
     ansible.builtin.pip:
       name: checkov
     become_user: ec2-user
+
+  - name: Install kubectl code completion
+    ansible.builtin.shell:
+      cmd: kubectl completion bash > /etc/profile.d/kubectl_completion.sh
+      creates: /etc/profile.d/kubectl_completion.sh
