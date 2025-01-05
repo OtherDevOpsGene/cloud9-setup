@@ -29,3 +29,10 @@
     ansible.builtin.shell:
       cmd: kubectl completion bash > /etc/profile.d/kubectl_completion.sh
       creates: /etc/profile.d/kubectl_completion.sh
+
+  - name: git clone my-first-kubernetes
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/my-first-kubernetes.git'
+      dest: /home/ec2-user/environment/my-first-kubernetes
+      version: main
+    become_user: ec2-user
