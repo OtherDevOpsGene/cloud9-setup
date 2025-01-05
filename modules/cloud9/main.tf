@@ -41,6 +41,6 @@ resource "aws_route53_record" "www" {
   zone_id = data.aws_route53_zone.hosted_domain.zone_id
   name    = "${var.username}.${var.subdomain}.${data.aws_route53_zone.hosted_domain.name}"
   type    = "A"
-  ttl     = 60
+  ttl     = 300
   records = [data.aws_instance.cloud9_instance.public_ip]
 }
