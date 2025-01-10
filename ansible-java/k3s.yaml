@@ -19,11 +19,33 @@
     ansible.builtin.command: 
       cmd: /tmp/k3s-install.sh --write-kubeconfig-mode "0644"
       creates: /etc/rancher/k3s/k3s.yaml
+  
+  - name: Copy kubeconfig into standard location
+    ansible.builtin.copy: 
+      src: /etc/rancher/k3s/k3s.yaml 
+      dest: /home/ec2-user/.kube/config
+      remote_src: yes
+      owner: ec2-user
+      group: ec2-user
+      mode: '0600'
 
   - name: Install Checkov
     ansible.builtin.pip:
       name: checkov
     become_user: ec2-user
+
+  - name: Download helm installation script
+    ansible.builtin.get_url:
+      url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+      dest: /tmp/get_helm.sh
+      owner: ec2-user
+      group: ec2-user
+      mode: '0755'
+
+  - name: Install helm
+    ansible.builtin.command: 
+      cmd: /tmp/get_helm.sh
+      creates: /usr/local/bin/helm
 
   - name: Install kubectl code completion
     ansible.builtin.shell:
