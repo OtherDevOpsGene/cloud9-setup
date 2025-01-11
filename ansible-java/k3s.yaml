@@ -20,6 +20,14 @@
       cmd: /tmp/k3s-install.sh --write-kubeconfig-mode "0644"
       creates: /etc/rancher/k3s/k3s.yaml
   
+  - name: Create .kube directory
+    ansible.builtin.file:
+      path: /home/ec2-user/.kube
+      state: directory
+      owner: ec2-user
+      group: ec2-user
+      mode: '0750'
+
   - name: Copy kubeconfig into standard location
     ansible.builtin.copy: 
       src: /etc/rancher/k3s/k3s.yaml 
