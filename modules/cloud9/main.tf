@@ -34,12 +34,15 @@ data "aws_instance" "cloud9_instance" {
 }
 
 data "aws_route53_zone" "hosted_domain" {
-  name = var.domain
+  for_each = toset(var.domains)
+  name = each.value
 }
 
 resource "aws_route53_record" "www" {
-  zone_id = data.aws_route53_zone.hosted_domain.zone_id
-  name    = "${var.username}.${var.subdomain}.${data.aws_route53_zone.hosted_domain.name}"
+  for_each = data.aws_route53_zone.hosted_domain
+
+  zone_id = each.value.zone_id
+  name    = "${var.username}.${var.subdomain}.${each.value.name}"
   type    = "A"
   ttl     = 300
   records = [data.aws_instance.cloud9_instance.public_ip]

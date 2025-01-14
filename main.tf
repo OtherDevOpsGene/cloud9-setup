@@ -34,7 +34,7 @@ module "cloud9" {
   aws_region    = var.aws_region
   instance_type = var.instance_type
 
-  domain    = var.domain
+  domains   = var.domains
   subdomain = var.subdomain
 }
 

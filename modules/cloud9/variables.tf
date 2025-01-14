@@ -25,9 +25,9 @@ variable "username" {
   type        = string
 }
 
-variable "domain" {
-  description = "The domain to use for DNS records."
-  type        = string
+variable "domains" {
+  description = "The domains to use for DNS records."
+  type        = list(string)
 }
 
 variable "subdomain" {

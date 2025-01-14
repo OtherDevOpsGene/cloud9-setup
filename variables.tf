@@ -33,9 +33,9 @@ variable "instance_type" {
   default     = "t3.small"
 }
 
-variable "domain" {
-  description = "The domain to use for DNS records."
-  type        = string
+variable "domains" {
+  description = "The domains to use for DNS records."
+  type        = list(string)
 }
 
 variable "subdomain" {
