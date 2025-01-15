@@ -1,0 +1,104 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    kubernetes.io/metadata.name: logins
+  name: logins
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: logins
+  name: logins
+  namespace: logins
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: logins
+  template:
+    metadata:
+      labels:
+        app: logins
+    spec:
+      containers:
+      - image: docker.io/otherdevopsgene/logins:1.0
+        name: logins
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: logins
+  name: logins
+  namespace: logins
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: logins
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-cert
+spec:
+  acme:
+    email: otherdevopsgene@portinfo.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-cert-private-key
+    solvers:
+      - http01:
+          ingress:
+            class: traefik
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect
+  namespace: logins
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: logins-ingress
+  namespace: logins
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-cert
+    traefik.ingress.kubernetes.io/router.middlewares: logins-redirect@kubernetescrd
+spec:
+  rules:
+  - host: www.codemash.otherdevopsgene.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: logins
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - www.codemash.otherdevopsgene.dev
+    secretName: acme-tls-cert
