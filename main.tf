@@ -1,16 +1,16 @@
 locals {
   # first line is a header, one username per line
-  #students = csvdecode(file("${path.module}/students.csv"))
+  students = csvdecode(file("${path.module}/students.csv"))
 
-  table_name = "usernames"
+  # table_name = "usernames"
 
   # create with gpg --export OtherDevOpsGene | base64 > OtherDevOpsGene-pub.b64
   pub_key = file("${path.module}/OtherDevOpsGene-pub.b64")
 }
 
-data "external" "usernames" {
-  program = ["python3", "${path.module}/get_usernames.py"]
-}
+#data "external" "usernames" {
+#  program = ["python3", "${path.module}/get_usernames.py"]
+#}
 
 module "policies" {
   source = "./modules/policies"
@@ -19,16 +19,20 @@ module "policies" {
 module "account" {
   source = "./modules/account"
 
-  for_each = toset(jsondecode(data.external.usernames.result.usernames))
-  username = each.value
+  # for_each = toset(jsondecode(data.external.usernames.result.usernames))
+  # username = each.value
+  for_each = { for acct in local.students : acct.username => acct }
+  username = each.value.username
   pub_key  = local.pub_key
 }
 
 module "cloud9" {
   source = "./modules/cloud9"
 
-  for_each = toset(jsondecode(data.external.usernames.result.usernames))
-  username = each.value
+  # for_each = toset(jsondecode(data.external.usernames.result.usernames))
+  # username = each.value
+  for_each = { for acct in local.students : acct.username => acct }
+  username = each.value.username
 
   aws_account   = var.aws_account
   aws_region    = var.aws_region

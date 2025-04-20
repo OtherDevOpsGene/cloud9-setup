@@ -1,0 +1,117 @@
+- name: Install Docker tools
+  hosts: all
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_bucket_name: otherdevopsgene-ansible-ssm
+    ansible_aws_ssm_region: us-east-2
+  become: yes
+
+  tasks:
+  - name: Install Checkov
+    ansible.builtin.pip:
+      name: checkov
+    become: yes
+    become_user: ec2-user
+
+  - name: Install Grype
+    ansible.builtin.unarchive:
+      src: https://github.com/anchore/grype/releases/download/v0.91.0/grype_0.91.0_linux_amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [grype]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Syft
+    ansible.builtin.unarchive:
+      src: https://github.com/anchore/syft/releases/download/v1.22.0/syft_1.22.0_linux_amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [syft]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Trivy
+    ansible.builtin.unarchive:
+      src: https://github.com/aquasecurity/trivy/releases/download/v0.61.1/trivy_0.61.1_Linux-64bit.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [trivy]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Dive
+    ansible.builtin.unarchive:
+      src: https://github.com/wagoodman/dive/releases/download/v0.13.1/dive_0.13.1_linux_amd64.tar.gz
+      dest: /usr/local/bin
+      remote_src: yes
+      include: [dive]
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Install Skopeo wrapper
+    ansible.builtin.copy:
+      src: skopeo
+      dest: /usr/local/bin/skopeo
+      owner: root
+      group: root
+      mode: '0755'
+
+  - name: Touch Skopeo check file
+    ansible.builtin.file:
+      path: /var/tmp/check-skopeo-latest
+      state: touch
+      owner: ec2-user
+      group: ec2-user
+      mode: '0644'
+
+  - name: Pull images
+    community.docker.docker_image:
+      name: "{{ item }}"
+      source: pull
+    loop:
+      - ubuntu:latest
+      - alpine:latest
+      - gcr.io/distroless/static-debian12
+      - hello-world:latest
+      - ubuntu:focal-20231003
+      - ubuntu:focal-20240216
+      - ubuntu:focal-20240530
+      - ubuntu:focal-20250404
+      - quay.io/skopeo/stable
+
+  - name: git clone secrets-abound
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/secrets-abound.git'
+      dest: /home/ec2-user/environment/secrets-abound
+      version: demo
+    become: yes
+    become_user: ec2-user
+
+  - name: git clone privileged
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/privileged.git'
+      dest: /home/ec2-user/environment/privileged
+      version: main
+    become: yes
+    become_user: ec2-user
+
+  - name: git clone helloworld
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/hello-world-sh.git'
+      dest: /home/ec2-user/environment/helloworld
+      version: main
+    become: yes
+    become_user: ec2-user
+
+  - name: Install sooper-secret
+    ansible.builtin.copy:
+      src: sooper-secret.txt
+      dest: /sooper-secret.txt
+      owner: root
+      group: root
+      mode: '0400'

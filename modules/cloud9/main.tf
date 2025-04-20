@@ -33,17 +33,17 @@ data "aws_instance" "cloud9_instance" {
   }
 }
 
-data "aws_route53_zone" "hosted_domain" {
-  for_each = toset(var.domains)
-  name = each.value
-}
+# data "aws_route53_zone" "hosted_domain" {
+#   for_each = toset(var.domains)
+#   name = each.value
+# }
 
-resource "aws_route53_record" "www" {
-  for_each = data.aws_route53_zone.hosted_domain
+# resource "aws_route53_record" "www" {
+#   for_each = data.aws_route53_zone.hosted_domain
 
-  zone_id = each.value.zone_id
-  name    = "${var.username}.${var.subdomain}.${each.value.name}"
-  type    = "A"
-  ttl     = 300
-  records = [data.aws_instance.cloud9_instance.public_ip]
-}
+#   zone_id = each.value.zone_id
+#   name    = "${var.username}.${var.subdomain}.${each.value.name}"
+#   type    = "A"
+#   ttl     = 300
+#   records = [data.aws_instance.cloud9_instance.public_ip]
+# }

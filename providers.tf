@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.57.0"
+      version = "~> 5.95.0"
     }
     external = {
       source  = "hashicorp/external"
@@ -10,7 +10,7 @@ terraform {
     }
   }
 
-  required_version = ">= 1.9.1"
+  required_version = ">= 1.11.4"
 
   backend "s3" {
     region  = "us-east-2"

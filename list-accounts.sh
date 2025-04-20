@@ -17,7 +17,7 @@ do
   urls[$key]="$value"
 done < <(terraform output --json cloud9_urls | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]')
 
-# Read encyrpted passwords by username
+# Read encrypted passwords by username
 while IFS="=" read -r key value
 do
   passwords[$key]="$value"
