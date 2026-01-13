@@ -43,3 +43,4 @@ ansible-java/kubeconfig
 index.html
 students.csv
 **/.terraform.lock.hcl
+venv

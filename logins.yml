@@ -24,7 +24,7 @@ spec:
         app: logins
     spec:
       containers:
-      - image: docker.io/otherdevopsgene/logins:1.0
+      - image: docker.io/otherdevopsgene/logins:2025.5.3
         name: logins
         imagePullPolicy: Always
         livenessProbe:
@@ -88,7 +88,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.middlewares: logins-redirect@kubernetescrd
 spec:
   rules:
-  - host: www.codemash.otherdevopsgene.dev
+  - host: www.kcdtx.otherdevopsgene.dev
     http:
       paths:
       - path: /
@@ -100,5 +100,5 @@ spec:
               number: 80
   tls:
   - hosts:
-    - www.codemash.otherdevopsgene.dev
+    - www.kcdtx.otherdevopsgene.dev
     secretName: acme-tls-cert

@@ -93,6 +93,7 @@ resource "aws_iam_policy" "s3_state_exercise" {
           "dynamodb:TagResource",
           "dynamodb:UntagResource",
           "dynamodb:UpdateContinuousBackups",
+          "dynamodb:UpdateItem",
           "dynamodb:UpdateTable",
           "dynamodb:UpdateTimeToLive"
         ],
@@ -145,6 +146,7 @@ resource "aws_iam_policy" "s3_state_exercise" {
           "s3:CreateBucket",
           "s3:DeleteBucket",
           "s3:DeleteBucketPolicy",
+          "s3:DeleteObject",
           "s3:GetAccelerateConfiguration",
           "s3:GetBucketAcl",
           "s3:GetBucketCORS",

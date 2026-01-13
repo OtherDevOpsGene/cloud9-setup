@@ -15,7 +15,7 @@
 
   - name: Install Grype
     ansible.builtin.unarchive:
-      src: https://github.com/anchore/grype/releases/download/v0.91.0/grype_0.91.0_linux_amd64.tar.gz
+      src: https://github.com/anchore/grype/releases/download/v0.92.0/grype_0.92.0_linux_amd64.tar.gz
       dest: /usr/local/bin
       remote_src: yes
       include: [grype]
@@ -25,7 +25,7 @@
 
   - name: Install Syft
     ansible.builtin.unarchive:
-      src: https://github.com/anchore/syft/releases/download/v1.22.0/syft_1.22.0_linux_amd64.tar.gz
+      src: https://github.com/anchore/syft/releases/download/v1.24.0/syft_1.24.0_linux_amd64.tar.gz
       dest: /usr/local/bin
       remote_src: yes
       include: [syft]
@@ -35,7 +35,7 @@
 
   - name: Install Trivy
     ansible.builtin.unarchive:
-      src: https://github.com/aquasecurity/trivy/releases/download/v0.61.1/trivy_0.61.1_Linux-64bit.tar.gz
+      src: https://github.com/aquasecurity/trivy/releases/download/v0.62.1/trivy_0.62.1_Linux-64bit.tar.gz
       dest: /usr/local/bin
       remote_src: yes
       include: [trivy]

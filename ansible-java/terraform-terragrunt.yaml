@@ -1,0 +1,26 @@
+- name: Install Terraform and Terragrunt
+  hosts: all
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_bucket_name: otherdevopsgene-ansible-ssm
+    ansible_aws_ssm_region: us-east-2
+  become: yes
+
+  roles:
+    - role: andrewrothstein.terraform
+    - role: andrewrothstein.terragrunt
+
+  tasks:
+  - name: Install Checkov
+    ansible.builtin.pip:
+      name: checkov
+    become: yes
+    become_user: ec2-user
+
+  - name: git clone terraform-terragrunt
+    ansible.builtin.git:
+      repo: 'https://github.com/OtherDevOpsGene/terraform-terragrunt.git'
+      dest: /home/ec2-user/environment/terraform-terragrunt
+      version: main
+    become: yes
+    become_user: ec2-user
