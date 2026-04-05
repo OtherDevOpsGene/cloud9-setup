@@ -7,28 +7,28 @@ start_size=10
 size=${1:-20}
 class=$(terraform output -raw class_name)
 
-vols=$(aws ec2 describe-instances --filters "Name=tag:Class,Values=${class}" | \
+vols=$(aws ec2 describe-instances --region us-east-2 --filters "Name=tag:Class,Values=${class}" | \
        jq -r '.Reservations[].Instances[].BlockDeviceMappings[].Ebs.VolumeId' | \
-       xargs aws ec2 describe-volumes --filters "Name=size,Values=${start_size}" --volume-ids | \
+       xargs aws ec2 describe-volumes --region us-east-2 --filters "Name=size,Values=${start_size}" --volume-ids | \
        jq -r '.Volumes[].VolumeId')
 
 if [[ ! -z ${vols[@]} ]]; then
   echo && echo "Resizing..."
   for vol in ${vols[@]}; do
-    aws ec2 modify-volume --volume-id ${vol} --size ${size} | jq -r '.VolumeModification.VolumeId'
+    aws ec2 modify-volume --region us-east-2 --volume-id ${vol} --size ${size} | jq -r '.VolumeModification.VolumeId'
   done
 
-  while [[ ! -z $(aws ec2 describe-volumes-modifications --volume-ids ${vols[@]} \
+  while [[ ! -z $(aws ec2 describe-volumes-modifications --region us-east-2 --volume-ids ${vols[@]} \
                   --filters "Name=modification-state,Values=modifying" | \
                   jq -r '.VolumesModifications[].VolumeId') ]]; do
     echo && echo "Waiting for modifications to complete."
     sleep 1
   done
 
-  changed=$(aws ec2 describe-volumes --volume-ids ${vols[@]} | jq -r '.Volumes[].Attachments[].InstanceId')
+  changed=$(aws ec2 describe-volumes --region us-east-2 --volume-ids ${vols[@]} | jq -r '.Volumes[].Attachments[].InstanceId')
   if [[ ! -z ${changed[@]} ]]; then
     echo && echo "Rebooting..."
-    aws ec2 reboot-instances --instance-ids ${changed[@]}
+    aws ec2 reboot-instances --region us-east-2 --instance-ids ${changed[@]}
   else
     echo && echo "None to reboot."
   fi
