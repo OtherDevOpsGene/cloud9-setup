@@ -11,9 +11,10 @@
 #    - role: geerlingguy.ansible
 
   tasks:
-  - name: git clone terraform-fundamentals
+  - name: git clone favorites
     ansible.builtin.git:
-      repo: 'https://github.com/OtherDevOpsGene/terraform-fundamentals.git'
-      dest: /home/ec2-user/environment/terraform-fundamentals
+      repo: 'https://github.com/OtherDevOpsGene/favorites.git'
+      dest: /home/ec2-user/environment/favorites
       version: main
     become_user: ec2-user
+    

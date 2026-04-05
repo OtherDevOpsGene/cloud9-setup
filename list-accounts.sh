@@ -2,8 +2,8 @@
 
 # Usage:
 #   bash list-accounts.sh > index.html 2>/dev/null
-#   aws s3 cp index.html s3://cloud9.otherdevopsgene.dev/index.html --acl public-read
-# Page is at https://s3.us-east-2.amazonaws.com/cloud9.otherdevopsgene.dev/index.html
+#   aws s3 cp index.html s3://otherdevopsgene.dev/index.html --acl public-read
+# Page is at https://otherdevopsgene.dev/
 
 # docker build -t otherdevopsgene/logins:1.0 .
 # docker login
@@ -92,7 +92,9 @@ cat <<-FOOT
       </tbody>
     </table>
 
-    <p>If you are asked for the Account ID, use <strong>732829343588</strong>.
+    <p>
+      If you are asked for the Account ID, use <strong>732829343588</strong>.
+    </p>
 
   </body>
 </html>

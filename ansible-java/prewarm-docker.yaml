@@ -1,0 +1,23 @@
+- name: Pull Docker images to save time
+  hosts: all
+  vars:
+    ansible_connection: aws_ssm
+    ansible_aws_ssm_bucket_name: otherdevopsgene-ansible-ssm
+    ansible_aws_ssm_region: us-east-2
+  become: yes
+
+  tasks:
+  - name: Pull images
+    community.docker.docker_image:
+      name: "{{ item }}"
+      source: pull
+    loop:
+      - ubuntu:latest
+      - alpine:latest
+      - gcr.io/distroless/static-debian12
+      - hello-world:latest
+      - ubuntu:focal-20231003
+      - ubuntu:focal-20240216
+      - ubuntu:focal-20240530
+      - ubuntu:focal-20250404
+      - quay.io/skopeo/stable
