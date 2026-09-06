@@ -9,15 +9,13 @@
   roles:
     - role: andrewrothstein.terraform
     - role: geerlingguy.ansible
+    - role: geerlingguy.java
+      java_packages:
+        - java-25-amazon-corretto
 
-  tasks:
-  - name: git clone favorites
-    ansible.builtin.git:
-      repo: 'https://github.com/OtherDevOpsGene/favorites.git'
-      dest: /home/ec2-user/environment/favorites
-      version: main
-    become_user: ec2-user
-    
+    - role: gantsign.maven
+
+  tasks:    
   - name: Install Checkov
     ansible.builtin.pip:
       name: checkov

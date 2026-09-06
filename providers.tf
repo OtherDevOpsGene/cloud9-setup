@@ -2,15 +2,15 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 6.39.0"
+      version = "~> 6.63.0"
     }
     external = {
       source  = "hashicorp/external"
-      version = "~> 2.3.5"
+      version = "~> 2.4.1"
     }
   }
 
-  required_version = ">= 1.14.8"
+  required_version = ">= 1.16.1"
 
   backend "s3" {
     region  = "us-east-2"
@@ -19,7 +19,7 @@ terraform {
     profile = ""
     encrypt = "true"
 
-    dynamodb_table = "otherdevopsgene-cloud9-class-lock"
+    use_lockfile = "true"
   }
 }
 
