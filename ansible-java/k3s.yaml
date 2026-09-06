@@ -44,7 +44,7 @@
 
   - name: Download helm installation script
     ansible.builtin.get_url:
-      url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+      url: https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
       dest: /tmp/get_helm.sh
       owner: ec2-user
       group: ec2-user

@@ -39,13 +39,13 @@ resource "aws_vpc_security_group_ingress_rule" "nodeport" {
   ip_protocol       = "tcp"
 }
 
-resource "aws_vpc_security_group_ingress_rule" "selenium_grid" {
-  security_group_id = data.aws_security_group.cloud9.id
-  cidr_ipv4         = "0.0.0.0/0"
-  from_port         = 4444
-  to_port           = 4444
-  ip_protocol       = "tcp"
-}
+# resource "aws_vpc_security_group_ingress_rule" "selenium_grid" {
+#   security_group_id = data.aws_security_group.cloud9.id
+#   cidr_ipv4         = "0.0.0.0/0"
+#   from_port         = 4444
+#   to_port           = 4444
+#   ip_protocol       = "tcp"
+# }
 
 resource "aws_vpc_security_group_ingress_rule" "kubectl" {
   security_group_id = data.aws_security_group.cloud9.id
